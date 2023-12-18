@@ -1,8 +1,24 @@
+import { useState } from "react";
 import { useGetUsersDataQuery } from "../redux/features/auth/authApi";
 import { UserDataType } from "../types";
 
 const Dashboard = () => {
-  const { data } = useGetUsersDataQuery(undefined);
+  //eslint-disable-next-line
+  const query: Record<string, any> = {};
+  const [page, setPage] = useState<number>(1);
+
+  query["page"] = page;
+  const { data } = useGetUsersDataQuery({ ...query });
+
+  const handlePreviousPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    setPage(page + 1);
+  };
 
   return (
     <div className="max-w-7xl mx-auto relative overflow-x-auto  sm:rounded-lg">
@@ -108,13 +124,20 @@ const Dashboard = () => {
         </tbody>
       </table>
       <div className="bg-gray-50 w-full text-gray-700 flex items-center justify-between py-3 px-6 border rounded-b-lg">
-        <button className="px-4 py-2 border-[#34405450] border rounded-lg text-[14px]">
+        <button
+          className="px-4 py-2 border-[#34405450] border rounded-lg text-[14px]"
+          onClick={() => handlePreviousPage()}
+        >
           Previous
         </button>
         <p className="text-[14px]">
           Page {data?.page} of {data?.total_pages}
         </p>
-        <button className="px-4 py-2 border-[#34405450] border rounded-lg text-[14px]">
+        <button
+          className="px-4 py-2 border-[#34405450] border rounded-lg text-[14px]"
+          disabled={data?.page === data?.total_pages}
+          onClick={() => handleNextPage()}
+        >
           Next
         </button>
       </div>
