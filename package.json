@@ -1,5 +1,5 @@
 {
-  "name": "anchorblock-task",
+  "name": "job-task",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
     "@reduxjs/toolkit": "^2.0.1",
+    "@types/zxcvbn": "^4.4.4",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.298.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.49.2",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.0",
-    "sonner": "^1.2.4"
+    "sonner": "^1.2.4",
+    "tailwind-merge": "^2.1.0",
+    "zod": "^3.22.4",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
